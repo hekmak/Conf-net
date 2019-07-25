@@ -4,8 +4,8 @@
 nvidia-docker run --name=tensorcvpclak \
     -p 8885:8888 \
     -p 6001:6006 \
-    -v /media/hamidhekmatian/My4TBHD1/Datasets/Kitti_depth:/notebooks/dataset \
-    -v /media/hamidhekmatian/My4TBHD1/AI_git/AI/depth_completion:/notebooks/project \
+    -v [PATH TO KITTI DEPTH COMPLETION DATASET]:/notebooks/dataset \
+    -v [PATH TO PROJECT FOLDER]:/notebooks/project \
     -it \
     -e DISPLAY=unix$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
