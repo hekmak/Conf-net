@@ -1,4 +1,4 @@
-# Code implemented by H.H Aug 2018
+#H.H Aug 2018
 
 import os
 import tensorflow as tf
