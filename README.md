@@ -10,7 +10,7 @@ This work proposes a new method for depth completion of sparse LiDAR data using 
 * We conduct the uncertainty based analysis of Kitti depth completion dataset for the first time.
 
 
-See full demo on Youtube.
+See the full demo on [Youtube](https://www.youtube.com/watch?v=QMttQxh41G0).
 
 | <p align="center">Network input/outputs</p>  | <p align="center">Purged 3D point-cloud</p> |
 | ------------- | ------------- |
