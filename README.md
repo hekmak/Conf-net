@@ -1,6 +1,6 @@
 # Conf-Net; Depth Completion with Error-Map
 Tensorflow implementation of our paper [Conf-Net: Predicting Depth Completion Error-Map For
-High-Confidence Dense 3D Point-Cloud](https://arxiv.org).
+High-Confidence Dense 3D Point-Cloud](https://arxiv.org/abs/1907.10148).
 
 # Introduction
 This work proposes a new method for depth completion of sparse LiDAR data using a convolutional neural network which learns to generate ”almost” full 3D point-clouds with significantly lower root mean squared error (RMSE) over state-of-the-art methods. Our main contributions are listed below:
