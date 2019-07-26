@@ -12,7 +12,6 @@ import time
 
 def uncertain_loss(predictions, var, labels, weights):
     loss =  (tf.div(tf.square(predictions-labels),2*((var+1e-7)*(var+1e-7))) + (0.5)*tf.math.log((var+1e-7)*(var+1e-7)))*weights
-    print "THIS IS LOSSSS"
     print loss
     return loss
 
@@ -20,14 +19,12 @@ def uncertain_loss(predictions, var, labels, weights):
 '''
 def uncertain_loss(predictions, var, labels, weights):
     loss =  (tf.multiply(tf.square(predictions-labels),(0.5)*tf.math.exp(-var+1e-7)) + (0.5)*(var+1e-7))*weights
-    print "THIS IS LOSSSS"
     print loss
     return loss
 '''
 
 def squared_loss(predictions, labels, weights):
     loss =  tf.square(predictions-labels)*weights
-    print "THIS IS LOSSSS"
     print loss
     return loss
 
