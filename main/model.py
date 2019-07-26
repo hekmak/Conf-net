@@ -11,36 +11,9 @@ import tensorflow as tf
 class CompletionWithError(DepthCompletion):
     def __init__(self):
         super(CompletionWithError, self).__init__()
-        self.parameters.dataset_train['input'] = os.path.join("..","datasets", "sparse_train_shuffled.dataset")
-        self.parameters.dataset_train['label'] = os.path.join("..","datasets", "dense_train_shuffled.dataset")
 
-        self.parameters.dataset_val['input'] = os.path.join("..","datasets", "sparse_val.dataset")
-        self.parameters.dataset_val['label'] = os.path.join("..","datasets", "dense_val.dataset")
-
-        self.parameters.dataset_test['input'] = os.path.join("..","datasets", "Htest_velodyne.dataset")
-        self.parameters.dataset_test['label'] = os.path.join("..","datasets", "Htest_ground.dataset")
-
-        #self.parameters.dataset_test['input'] = os.path.join("..","datasets", "submit_test.dataset")
-        #self.parameters.dataset_test['label'] = os.path.join("..","datasets", "submit_test.dataset")
-
-
-        self.parameters.image_size = (352, 1216)
-        self.parameters.max_epochs=15
-        self.parameters.batchsize = 4
-        self.parameters.steps_per_epoch = 85896
-        self.parameters.steps_per_epoch = self.parameters.steps_per_epoch / \
-            self.parameters.batchsize
-
-        self.parameters.num_steps = self.parameters.steps_per_epoch * self.parameters.max_epochs
-
-        self.parameters.log_dir = './logs/completion_with_error/'
-
-        self.parameters.learning_rate = 0.001
-        optimizer = tf.train.AdamOptimizer(
-            learning_rate=self.parameters.learning_rate)
-        
         # for multi GPU
-        self.parameters.optimizer = tf.contrib.estimator.TowerOptimizer(optimizer)
+        ##self.parameters.optimizer = tf.contrib.estimator.TowerOptimizer(self.parameters.optimizer)
 
     def res_block(self,x1,filters=64, kernel_size=(3, 3), padding='same', strides = 1):
             x = normal_conv(x1 , filters=filters, kernel_size=kernel_size, padding='same', strides = 2)
@@ -54,7 +27,6 @@ class CompletionWithError(DepthCompletion):
                          tf.zeros_like(features),
                          tf.ones_like(features)*65535-features)
 
-
         x_for = tf.layers.max_pooling2d(inv_x,pool_size=pool_size,strides=strides,padding='same')
         x_for = tf.where(tf.equal(x_for, 0),
                              tf.zeros_like(x_for),
@@ -63,7 +35,6 @@ class CompletionWithError(DepthCompletion):
     
     def background(self,features,pool_size=(2,2),strides=(1,1)):
         x_back = tf.layers.max_pooling2d(features,pool_size=pool_size,strides=strides,padding='same')
-
         return x_back
     
     def hourglass(self,features,f=32):
@@ -75,7 +46,7 @@ class CompletionWithError(DepthCompletion):
         x2_4 = self.res_block(x2_3 , filters=f*8, kernel_size=(3, 3), padding='same', strides = 2)
         #x2_4 = tf.nn.dropout(x2_4,0.5)
 
-        #  deconvs
+        #  transpose convs
         xd  = normal_deconv(x2_4, filters=f*8, strides=2, kernel_size=(3, 3), padding='same') 
         xd = tf.nn.relu(xd)
         xd  = tf.concat([x2_3,xd],3)
@@ -126,7 +97,7 @@ class CompletionWithError(DepthCompletion):
             frground = self.forground(l,pool_size=(15,15))
         
             x2  = tf.concat([frground,bkground,l],3)
-            x2 = self.hourglass(x2, f=64)
+            x2 = self.hourglass(x2, f=32)
             pred, var = self.pred_var(x2,n_errors=1)
             
             return tf.identity(pred,name='pred_depth'),tf.identity(var,name='pred_error')

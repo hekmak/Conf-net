@@ -1,4 +1,4 @@
-#H.H Aug 2018
+# H.H Aug 2018
 
 import os
 import tensorflow as tf
@@ -72,7 +72,6 @@ class DepthCompletion(Experiment):
 
     def __init__(self):
         super(DepthCompletion, self).__init__()
-        self.parameters.image_size = (1216, 352)
         self.gpu_count = 0
 
 
@@ -90,13 +89,13 @@ class DepthCompletion(Experiment):
                 tf_dataset = tf_dataset.repeat(self.parameters.max_epochs)
                 if self.parameters.shuffle:
                     tf_dataset = tf_dataset.shuffle(
-                        buffer_size=self.parameters.steps_per_epoch * self.parameters.batchsize)
+                        buffer_size=self.parameters.steps_per_epoch * self.parameters.batch_size)
                 tf_dataset = tf_dataset.map(load_img_to_tensor, num_parallel_calls=1)
-                tf_dataset = tf_dataset.batch(self.parameters.batchsize)
+                tf_dataset = tf_dataset.batch(self.parameters.batch_size)
                 tf_dataset = tf_dataset.prefetch(buffer_size=self.parameters.prefetch_buffer_size)
             else:
                 tf_dataset = tf_dataset.map(load_img_to_tensor, num_parallel_calls=1)
-                tf_dataset = tf_dataset.batch(self.parameters.batchsize)#(1)
+                tf_dataset = tf_dataset.batch(self.parameters.batch_size)#(1)
                 tf_dataset = tf_dataset.prefetch(buffer_size=self.parameters.prefetch_buffer_size)
 
             iterator = tf_dataset.make_one_shot_iterator()
@@ -119,10 +118,10 @@ class DepthCompletion(Experiment):
             tf_label = tf.map_fn(lambda img: tf.image.resize_image_with_crop_or_pad(
                 img, self.parameters.image_size[0], self.parameters.image_size[1]), tf_label)
 
-            tf_input.set_shape([self.parameters.batchsize,
+            tf_input.set_shape([self.parameters.batch_size,
                                 self.parameters.image_size[0], self.parameters.image_size[1], 1])
             tf_input = tf.cast(tf_input, tf.float32)
-            tf_label.set_shape([self.parameters.batchsize,
+            tf_label.set_shape([self.parameters.batch_size,
                                 self.parameters.image_size[0], self.parameters.image_size[1], 1])
             tf_label = tf.cast(tf_label, tf.float32)
             
@@ -163,7 +162,7 @@ class DepthCompletion(Experiment):
         labels = labels["label"]
       
         # for better TB visualization
-        self.gpu_count = (self.gpu_count+1)%self.parameters.batchsize
+        self.gpu_count = (self.gpu_count+1)%self.parameters.batch_size
         
         label_mask = tf.where(tf.equal(labels, self.parameters.invalid_value), 
                               tf.zeros_like(labels), 
@@ -216,9 +215,9 @@ class DepthCompletion(Experiment):
         if mode == tf.estimator.ModeKeys.TRAIN:
             tf.summary.image("GPU"+str(self.gpu_count)+"/Input/Train/", features)
             tf.summary.image("GPU"+str(self.gpu_count)+"/Ground_truth/Train/", labels)
-            tf.summary.image("GPU"+str(self.gpu_count)+"/Dense_Depth/Train/", pred_depth)
-            tf.summary.image("GPU"+str(self.gpu_count)+"/Predicted_Error/Train/", pred_error)
-            tf.summary.image("GPU"+str(self.gpu_count)+"/Predicted_Error_log/Train/", tf.log(pred_error))
+            tf.summary.image("GPU"+str(self.gpu_count)+"/Prediction/Dense_depth/Train/", pred_depth)
+            tf.summary.image("GPU"+str(self.gpu_count)+"/Prediction/Error_map/Train/", pred_error)
+            tf.summary.image("GPU"+str(self.gpu_count)+"/Prediction/Error_map_logspace/Train/", tf.log(pred_error))
             tf.summary.scalar("GPU"+str(self.gpu_count)+"/loss_depth/", loss_depth)
             tf.summary.scalar("GPU"+str(self.gpu_count)+"/loss_error/", loss_error)
             tf.summary.scalar("GPU"+str(self.gpu_count)+"/loss_depth+loss_error/", loss_depth+loss_error)

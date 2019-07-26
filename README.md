@@ -26,9 +26,9 @@ See the full demo on [Youtube](https://www.youtube.com/watch?v=QMttQxh41G0).
 <img width="420" align="cener" src="images/artak.gif">
 -->
 ## Installing
-The code is tested with Cuda 9 and tensorflow 1.9.0 on Titan V.<br/>
+The code is tested with Cuda 9 and tensorflow 1.10 on Titan V.<br/>
 We suggest using our docker to run the code.<br/>
-(The docker includes Cuda 9 with tensorflow 1.9, ros kinetict and pcl library for point-cloud visualization.)
+(The docker includes Cuda 9 with tensorflow 1.10, ros kinetict and pcl library for point-cloud visualization.)
 ```
 bash docker_run.sh
 ```

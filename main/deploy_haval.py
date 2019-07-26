@@ -3,9 +3,6 @@ import os
 import numpy as np
 from PIL import Image
 import cv2
-from scipy import misc
-
-import matplotlib
 import matplotlib.pyplot as plt
     
 IMAGE_WIDTH, IMAGE_HEIGHT = 1216, 352
