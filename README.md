@@ -25,6 +25,9 @@ See the full demo on [Youtube](https://www.youtube.com/watch?v=owd8QeUkjvA).
 <img width="420" align="cener" src="images/demo1.gif">
 <img width="420" align="cener" src="images/artak.gif">
 -->
+Results on NYU Depth V2
+<img width="420" align="cener" src="images/nyu.png">
+
 ## Installing
 The code is tested with Cuda 9 and tensorflow 1.10 on Titan V.<br/>
 We suggest using our docker to run the code.<br/>
