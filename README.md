@@ -25,7 +25,8 @@ See the full demo on [Youtube](https://www.youtube.com/watch?v=owd8QeUkjvA).
 <img width="420" align="cener" src="images/demo1.gif">
 <img width="420" align="cener" src="images/artak.gif">
 -->
-Results on NYU Depth V2
+Results on Monocular depth estimation on NYU Depth V2:
+-->
 <img width="420" align="cener" src="images/nyu.png">
 
 ## Installing
