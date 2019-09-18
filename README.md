@@ -1,4 +1,4 @@
-# Conf-Net; Depth Completion with Error-Map
+# Conf-Net: Depth Completion with Error-Map
 Tensorflow implementation of our paper [Conf-Net: Predicting Depth Completion Error-Map For
 High-Confidence Dense 3D Point-Cloud](https://arxiv.org/abs/1907.10148).
 
@@ -25,8 +25,8 @@ See the full demo on [Youtube](https://www.youtube.com/watch?v=owd8QeUkjvA).
 <img width="420" align="cener" src="images/demo1.gif">
 <img width="420" align="cener" src="images/artak.gif">
 -->
-Results on Monocular depth estimation on NYU Depth V2:
--->
+Results on Monocular Depth Estimation on NYU Depth V2:
+
 <img width="420" align="cener" src="images/nyu.png">
 
 ## Installing
