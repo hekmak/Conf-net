@@ -14,8 +14,8 @@ See the full demo on [Youtube](https://www.youtube.com/watch?v=owd8QeUkjvA).
 
 | <p align="center">Network input/outputs</p>  | <p align="center">Purged 3D point-cloud</p> |
 | ------------- | ------------- |
-| <br/><p align="center">Sparse Depth (Input):<br/><img src="images/raw.gif"> <br/> Predicted Dnese Depth (RMSE: 1000mm):<br/> <img align="cener" src="images/mean.gif"><br/> Predicted Pixelwise Error-Map:<br/> <img align="cener" src="images/var.gif"><br/> Purged Dense Depth (RMSE: 300mm):<br/> <img align="cener" src="images/purge.gif"></p>|<p align="center"><img src="images/artak.gif"><img width="420" align="cener" src="images/table.png">
-</p> |
+| <br/><p align="center">Sparse Depth (Input):<br/><img src="images/raw.gif"> <br/> Predicted Dnese Depth (RMSE: 1000mm):<br/> <img align="cener" src="images/mean.gif"><br/> Predicted Pixelwise Error-Map:<br/> <img align="cener" src="images/var.gif"><br/> Purged Dense Depth (RMSE: 300mm):<br/> <img align="cener" src="images/purge.gif"></p>|<p align="center"><img src="images/artak.gif"><img width="400" align="cener" src="images/table.png">
+</p>
 
 <img width="420" align="cener" src="images/table.png">
 
