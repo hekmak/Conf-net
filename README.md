@@ -42,7 +42,7 @@ python ./main/depth_completion.py train
 ```
 ## Testing
 ```
-python deploy_haval.py
+python ./main/deploy_haval.py
 ```
 
 
