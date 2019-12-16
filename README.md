@@ -36,7 +36,13 @@ We suggest using our docker to run the code.<br/>
 bash docker_run.sh
 ```
 ## Training
-Codes will be added soon.
+
+```
+python ./main/depth_completion.py train
+```
+## Testing
+```
+python deploy_haval.py
 ```
 
 
