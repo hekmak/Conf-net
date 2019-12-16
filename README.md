@@ -36,16 +36,7 @@ We suggest using our docker to run the code.<br/>
 bash docker_run.sh
 ```
 ## Training
-Inside the docker:
-```
-cd project/
-python main.py train
-```
-## Testing
-Download the trained model from [here](https://drive.google.com/file/d/1kAJMNAMEvCvpHQLSpPxBxag1taFsP78s/view?usp=sharing).
-```
-cd main
-python deploy_haval.py
+Codes will be added soon.
 ```
 
 
